@@ -177,7 +177,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-12">
                             <div class="card">
-                                <img class="card-img" src="/Mini-Project/images/govind.jpg" alt="Govind Saxena"
+                                <img class="card-img" src="https://imgur.com/XG86iln" alt="Govind Saxena"
                                     style="width:100%; height: 250px;">
                                 <div class="container">
                                     <h2>Govind Saxena</h2>
