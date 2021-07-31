@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Add Question
+{% endblock title %}
+
+{% block add-ques-active %}
+	active
+{% endblock add-ques-active %}
+
+{% block head %}
+
+    <script src="https://cdn.tiny.cloud/1/a2t6rs5zrrct9fdctae0xp0dmrqdtexoaayqfc3m3vkrnog5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+    </script>
+    <style>
+        .btn-submit {
+            background-color: rgb(130, 80, 165);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: rgb(165, 91, 218);
+            color: white;
+        }
+
+        .ques-form {
+            background-color: rgb(244, 245, 245);
+        }
+
+        label {
+            font-weight: 600;
+        }
+    </style>
+{% endblock head %}
+
+{% block body %}
+    <div class="container">
+        <div class="container mt-4">
+            <div class="jumbotron p-4 p-md-5 text-white bg-dark rounded">
+                <div class="col-12 px-0">
+                    <h1 class="display-4 font-italic text-center">CodeTalks</h1>
+                    <p id="logo" class="text-center h3" style="color: rgb(184, 119, 236); font-family:monospace;"></p>
+                    <script>
+                        var i = 0;
+                        var txt = "Where someone's code talk to someone else's code.";
+
+                        window.onload = function typeWriter() {
+                            if (i < txt.length) {
+                                document.getElementById("logo").innerHTML += txt.charAt(i);
+                                i++;
+                                setTimeout(typeWriter, 70);
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="row rounded jumbotron p-4 p-md-5" style="margin-left: 0; margin-right: 0;">
+                <div class="col-md-12 px-0">
+                    <h1 class="h1" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                        Post New Question
+                    </h1>
+                    <form action="/post-question" method="POST">{% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="ques_topic">Question Topic</label>
+                                <input type="text" name="question_topic" placeholder="Question Topic" required class="form-control" id="ques_topic">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ques_field">Question Field</label>
+                                <select class="form-control" name="question_field" required id="ques_field">
+                                    <option value="" selected disabled>Choose...</option>
+                                    <option value="Development">Developemnt</option>
+                                    <option value="Competetive Coding">Competetive Coding</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 form-group">
+                                <label for="mytextarea">Question Description</label>
+                                <textarea id="mytextarea" name="question_data" class="mb-3" rows="20" required placeholder="New Question Here.....">
+                                </textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+

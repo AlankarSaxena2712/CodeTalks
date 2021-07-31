@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Home
+{% endblock title %}
+
+{% block home-active %}
+	active
+{% endblock home-active %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+            <div class="col-12 px-0">
+                <h1 class="display-4 font-italic text-center">CodeTalks</h1>
+                <p id="logo" class="text-center h3" style="color: rgb(184, 119, 236); font-family:monospace;"></p>
+                <script>
+                    var i = 0;
+                    var txt = "Where someone's code talk to someone else's code.";
+                    
+                    window.onload = function typeWriter() {
+                        if (i < txt.length) {
+                            document.getElementById("logo").innerHTML += txt.charAt(i);
+                            i++;
+                            setTimeout(typeWriter, 70);
+                        }
+                    }
+                    </script>
+            </div>
+        </div>
+        
+        
+        <div class="row mb-2 bg-transparent">
+            {% for ques in questions %}
+                <div class="col-md-6">
+                    <div class="row no-gutters bg-light border rounded overflow-hidden flex-md-row mb-4 shadow shadow-success h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary">{{ ques.field }}</strong>
+                        <h3 class="mb-0">{{ ques.topic }}</h3>
+                        <div class="mb-1 text-muted">{{ ques.timestamp }}</div>
+                        <!-- <p class="card-text mb-2">Question Description ametd consectetur adipisicing elit. Ipsa doloribus
+                            sequi aspernatur nisi, exercitationem laudantium non aperiam ea, reprehenderit voluptati</p> -->
+                            <a href="registration.html" class="stretched-link h5 font-weight-bold">Continue reading</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/static/img/logo_without_bg.png" type="image/x-icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<title>{% block title %}{% endblock title %} - CodeTalks</title>
+
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background: rgb(178, 189, 189);
+		}
+
+		.col-md-7 {
+			background: url('images/copy2.jpg');
+			border-radius: 30px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.row {
+			background: rgb(244, 245, 245);
+			border-radius: 30px;
+			height: auto;
+		}
+
+		img {
+			border-radius: 30px;
+		}
+
+		#heading {
+			text-align: center;
+		}
+
+		@media (min-width: 768px) {
+			section {
+				padding-top: 1%;
+				padding-bottom: 1%;
+			}
+		}
+
+
+		.btn1 {
+			border: none;
+			outline: none;
+			height: 50px;
+			width: 100%;
+			background-color: black;
+			color: white;
+			border-radius: 4px;
+			font-weight: bold;
+		}
+
+		.btn1:hover {
+			background: white;
+			border: 1px solid;
+			color: black;
+
+		}
+
+		#forgot_pass {
+			text-decoration: none;
+		}
+
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			margin: 10px;
+			padding: 5px;
+		}
+
+		.title {
+			color: grey;
+		}
+
+		.footer {
+			color: white;
+			text-decoration: none;
+			font-weight: bolder;
+		}
+
+		.footer:hover {
+			text-decoration: none;
+			color: white;
+		}
+	</style>
+	
+	{% block head %}
+	{% endblock head %}
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="/">
+			<img src="/static/img/logo_without_bg.png" class="d-inline-block align-top" style="width: 50px; height: 50px;" alt="">
+		</a>
+		<a href="/" class="navbar-brand">CodeTalks</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link {% block home-active %}{% endblock home-active %}" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {% block add-ques-active %}{% endblock add-ques-active %}" href="/post-question">Post Question</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				{% if request.user.is_authenticated %}
+					<li class="nav-item">
+						<a class="nav-link mx-1">Welcome <span class="text-white">{{ request.user.first_name }}</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link mx-1" href="/logout">Logout</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link mx-1 {% block register-active %}{% endblock register-active %}" href="/register">Register</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link mx-1{% block login-active %}{% endblock login-active %}" href="/login">Login</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+
+
+    {% block body %}
+    {% endblock body %}
+
+
+	<footer class="footer mt-auto text-center bg-secondary py-3">
+		<a class="footer">© CodeTalks 2021</a>
+	</footer>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+	</script>
+</body>
+
+</html>
