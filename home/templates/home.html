@@ -27,22 +27,20 @@
                             setTimeout(typeWriter, 70);
                         }
                     }
-                    </script>
+                </script>
             </div>
         </div>
         
-        
+        {% load humanize %}
         <div class="row mb-2 bg-transparent">
             {% for ques in questions %}
                 <div class="col-md-6">
-                    <div class="row no-gutters bg-light border rounded overflow-hidden flex-md-row mb-4 shadow shadow-success h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">{{ ques.field }}</strong>
-                        <h3 class="mb-0">{{ ques.topic }}</h3>
-                        <div class="mb-1 text-muted">{{ ques.timestamp }}</div>
-                        <!-- <p class="card-text mb-2">Question Description ametd consectetur adipisicing elit. Ipsa doloribus
-                            sequi aspernatur nisi, exercitationem laudantium non aperiam ea, reprehenderit voluptati</p> -->
-                            <a href="registration.html" class="stretched-link h5 font-weight-bold">Continue reading</a>
+                    <div class="row no-gutters bg-light border rounded overflow-hidden flex-md-row mb-4 shadow shadow-success position-relative" style="height: 170px;">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">{{ ques.field }}</strong>
+                            <h5 class="mb-0" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">{{ ques.topic }}</h5>
+                            <div class="mb-1 text-muted">{{ ques.timestamp|naturaltime }}</div>
+                            <a href="/question/{{ ques.topic|slugify }}" class="stretched-link h5 font-weight-bold text-decoration-none">Continue reading</a>
                         </div>
                     </div>
                 </div>

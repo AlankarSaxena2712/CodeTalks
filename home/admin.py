@@ -1,7 +1,7 @@
-from home.models import Question
+from home.models import Question, QuestionComment
 from django.contrib import admin
 
-
+admin.site.register(QuestionComment)
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ['id', 'topic', 'field', 'user', 'timestamp']
@@ -11,7 +11,7 @@ class QuestionAdmin(admin.ModelAdmin):
         (None, {
             'classes': ('wide', 'extrapretty'),
             "fields": (
-                'user', 'topic', 'field',
+                'user', 'topic', 'slug', 'field',
             ),
         }),
         ("Question", {
