@@ -43,4 +43,4 @@ def post_comment(request):
 
         cmnt = QuestionComment(comment=comment, user=user, question=ques)
         cmnt.save()
-        return redirect(f"question/{ques_id}")
+        return redirect(f"question/{ques.slug}")
