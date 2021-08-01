@@ -33,12 +33,14 @@ def handle_login(request):
                 login(request=request, user=user)
                 return redirect('home')
             else:
-                currUser = User.objects.get(username=email)
-                if not currUser.is_active:
-                    messages.error(request, "Your account has been temporarily suspeneded.")
+                try:
+                    currUser = User.objects.get(username=email)
+                    if not currUser.is_active:
+                        messages.error(request, "Your account has been temporarily suspeneded.")
+                        return redirect('login')
+                except Exception:
+                    messages.error(request, 'Please check your credentials!')
                     return redirect('login')
-                messages.error(request, 'Please check your credentials!')
-                return redirect('login')
     return render(request, "login.html")
 
 def handle_logout(request):
